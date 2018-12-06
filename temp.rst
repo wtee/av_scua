@@ -19,3 +19,20 @@ to search and export a csv file.
 2. set up first test
 3. first test passes by adding templates/basic/home.html, basic/urls.py, urls.py,
 and creating a simple view in basic/views.py
+
+#################
+Functional Test
+#################
+
+Functional test boots up a live server and checks if layout is correct.
+This makes use of selenium.
+
+.. code:: shell
+
+  pip install selenium
+
+To run all tests, use
+
+.. code:: shell
+
+  python manage.py test
