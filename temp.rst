@@ -15,7 +15,7 @@ to search and export a csv file.
   cd AV_SCUA
   django-admin startapp basic
 
-1. Add TEMPLATES_DIR to settings.py
+1. Add TEMPLATES_DIR and add app to settings.py
 2. set up first test
 3. first test passes by adding templates/basic/home.html, basic/urls.py, urls.py,
 and creating a simple view in basic/views.py
@@ -36,3 +36,18 @@ To run all tests, use
 .. code:: shell
 
   python manage.py test
+
+
+#####################
+Create Super User
+#####################
+.. code:: shell
+
+  python manage.py makemigrations
+  python manage.py migrate
+
+Creating superuser with name and password
+
+.. code:: shell
+
+  python manage.py createsuperuser
