@@ -21,7 +21,7 @@ to search and export a csv file.
 and creating a simple view in basic/views.py
 
 #################
-Functional Test
+Functional Tests
 #################
 
 Functional test boots up a live server and checks if layout is correct.
@@ -37,6 +37,12 @@ To run all tests, use
 
   python manage.py test
 
+
+######################
+Django Tests
+######################
+1. Test if home page template is used
+2. Test if data is being correctly modeled 
 
 #####################
 Create Super User
