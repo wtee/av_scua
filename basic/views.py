@@ -5,4 +5,4 @@ def home_page(request):
     '''
         Home Page located in templates/basic/home.html
     '''
-    return render(request, 'basic/home.html')
+    return render(request, 'basic/dtable.html')

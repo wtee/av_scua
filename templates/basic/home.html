@@ -3,8 +3,37 @@
 
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <meta name="description" content="Audio Visual Data for Iowa State University">
   <title>Home</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!--  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css">-->
+  <link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="//cdn.datatables.net/select/1.2.7/css/select.dataTables.min.css">
+
+  <style>
+    body {
+      padding-bottom: 40px;
+    }
+
+    #av_left{
+      font-size: 16px;
+      padding-right: 50px;
+      padding-top: 25px;
+
+    }
+    td.details-control {
+      background: url('../resources/details_open.png') no-repeat center center;
+      cursor: pointer;
+    }
+
+    tr.details td.details-control {
+      background: url('../resources/details_close.png') no-repeat center center;
+    }
+
+    #nostripe {
+      background-color: #CECBCB;
+    }
+  </style>
 </head>
 
 <body>
@@ -19,11 +48,14 @@
       </ul>
     </div>
   </nav>
-  <div class="container">
-  <div class="jumbotron">
-    <h1>Audio Visual Data</h1>
+  <div class="container" style="font-size: .9em;">
+    {% block content %}{% endblock %}
   </div>
-</div>
+  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+  <script src="//cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+  <script src="//cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js"></script>
+  {% block extra_js %}{% endblock %}
 </body>
 
 </html>
