@@ -42,7 +42,7 @@ To run all tests, use
 Django Tests
 ######################
 1. Test if home page template is used
-2. Test if data is being correctly modeled 
+2. Test if data is being correctly modeled
 
 #####################
 Create Super User
@@ -57,3 +57,18 @@ Creating superuser with name and password
 .. code:: shell
 
   python manage.py createsuperuser
+
+#####################
+Word about the Model
+#####################
+
+There does not appear to be much benefit in putting the model into 3NF. If
+this changes, we can easily start to break apart items.
+
+################
+Word about CRUD
+################
+
+We can roll out the database with datatables, without having all of the CRUD
+operations available through the tables. For now these items are editable through
+Django's admin.  The Django API is certainly worth looking into for this. 

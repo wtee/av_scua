@@ -3,6 +3,8 @@ from selenium import webdriver
 from selenium.webdriver import Firefox
 from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+
 import time
 
 MAX_WAIT = 10
@@ -28,13 +30,28 @@ class NewVisitorTest(LiveServerTestCase):
         '''
         # Agent navigates to home page and notices a menu bar
         self.browser.get(self.live_server_url)
-        self.fail('Browser loaded, next up menu bar')
 
         # Agent notices menu bar as 'Brand', 'Home', 'Admin'
+        brand = self.browser.find_element(By.XPATH,
+                                          '//div[@class="navbar-header"]/a')
+
+        # make sure the brand is in navbar-brand
+        brand_attrib = brand.get_attribute("class")
+        self.assertEqual(brand_attrib, 'navbar-brand')
+        self.assertEqual(brand.text, 'AV Database')
+
+        homeadmin = self.browser.find_elements_by_xpath('//ul[@class="nav navbar-nav"]/li')
+        home = homeadmin[0]
+        admin = homeadmin[1]
+        self.assertEqual(home.text, 'Home')
+        self.assertEqual(admin.text, 'Admin')
 
         # Agent notices H1
+        h1 = self.browser.find_element(By.XPATH,'//h1')
+        self.assertEqual(h1.text, 'Audio Visual Data')
 
         # Agent notices search boxes (adjust for number of facets)
+        self.fail('Set up tables')
 
         # Agent notices notices table populated with data
 
