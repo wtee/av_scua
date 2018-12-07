@@ -25,12 +25,6 @@ class AVItem(models.Model):
     description = models.CharField(max_length=100, unique=False,blank = True)
     location = models.CharField(max_length=100, unique=False,blank = True)
 
-    class Meta:
-        ordering=('item_title',
-                  'uid',
-                  'original_id',
-                  'collection_id',
-                  )
 
     def __str__(self):
         return self.item_title

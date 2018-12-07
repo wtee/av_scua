@@ -56,3 +56,21 @@ class NewVisitorTest(LiveServerTestCase):
         # Agent notices notices table populated with data
 
         # Agent notices an export button
+
+    def test_API_endpoints(self):
+        '''
+            Make sure API enpoints are correct
+        '''
+        # agent accesses API and ensures it can be filled out
+        self.browser.get(self.live_server_url+'/api')
+        self.browser.find_element(By.XPATH,
+                                  '/html/body/div/div[2]/div/div[3]/div/div[1]/form/fieldset/div[1]/div/input').send_keys('5')
+
+        self.browser.find_element(By.XPATH,
+                                  '/html/body/div/div[2]/div/div[3]/div/div[1]/form/fieldset/div[2]/div/input').send_keys('abc123')
+
+        self.browser.find_element(By.XPATH,
+                                  '/html/body/div/div[2]/div/div[3]/div/div[1]/form/fieldset/div[14]/button').click()
+
+
+        self.fail('Need to set up tests for the API')

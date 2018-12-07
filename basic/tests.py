@@ -52,8 +52,8 @@ class ItemModelsTest(TestCase):
         saved_items = AVItem.objects.all()
         self.assertEqual(saved_items.count(), 2)
 
-        first_saved_item_ = saved_items[1]
-        second_saved_item_ = saved_items[0]
+        first_saved_item_ = saved_items[0]
+        second_saved_item_ = saved_items[1]
 
         self.assertEqual(first_saved_item_.uid, 'hello uid')
         self.assertEqual(first_saved_item_.item_title,'hello item_title')
