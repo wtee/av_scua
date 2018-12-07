@@ -82,3 +82,12 @@ class ItemModelsTest(TestCase):
         self.assertEqual(second_saved_item_.credits,'goodbye credits')
         self.assertEqual(second_saved_item_.description,'goodbye description')
         self.assertEqual(second_saved_item_.location,'goodbye location')
+
+class APIEndpointTest(TestCase):
+    '''
+        Test the API endpoints for 200 response
+    '''
+    def test_api_home_page_works(self):
+        for x in ['/api/', '/api/table/']:
+            response = self.client.get(x)
+            self.assertEquals(response.status_code, 200)

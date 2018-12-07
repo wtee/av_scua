@@ -25,6 +25,7 @@ class AVItem(models.Model):
     description = models.CharField(max_length=100, unique=False,blank = True)
     location = models.CharField(max_length=100, unique=False,blank = True)
 
+    format_duration = models.TimeField(default="00:00:00")
 
     def __str__(self):
         return self.item_title
