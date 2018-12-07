@@ -19,3 +19,12 @@ class AVItemSerializer(serializers.ModelSerializer):
                   'credits',
                   'description',
                   'location',)
+
+class ToyAVSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AVItem
+        fields = ('pk',
+                  'uid',
+                  'item_title',
+                  'series_title',
+                  'episode_title')

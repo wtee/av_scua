@@ -71,4 +71,34 @@ Word about CRUD
 
 We can roll out the database with datatables, without having all of the CRUD
 operations available through the tables. For now these items are editable through
-Django's admin.  The Django API is certainly worth looking into for this. 
+Django's admin.  The Django API is certainly worth looking into for this.
+
+
+#####################
+Datatables
+#####################
+
+The first thing to know is that you need to code a second serializer to
+account for datatables
+
+views.py
+
+.. code-block:: python
+
+  @csrf_exampt
+  def av_list(request):
+      if request.method == 'GET':
+          avitems = AVItem.objects.all()
+
+
+serializers.py
+
+.. code-block:: python
+
+  class ToyAVSerializer(serializers.ModelSerializer):
+      class Meta:
+          model = AVItem
+          fields = ('uid',
+                    'item_title',
+                    'series_title',
+                    'episode_title')

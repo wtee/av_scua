@@ -60,6 +60,8 @@ MIDDLEWARE = [
 ]
 
 
+ROOT_URLCONF = 'dron_api.urls'
+
 ROOT_URLCONF = 'AV_SCUA.urls'
 
 TEMPLATES = [

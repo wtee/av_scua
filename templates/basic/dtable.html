@@ -4,7 +4,7 @@
   <div class="jumbotron">
     <h1>Audio Visual Data</h1>
     <div id='av_left'>
-      <table cellpadding="3" cellspacing="0" border="0" style="width: 67%; margin: 0 auto 2em auto;">
+      <table id='ignore' cellpadding="3" cellspacing="0" border="0" style="width: 67%; margin: 0 auto 2em auto;">
         <thead>
           <tr>
             <th>Target</th>
@@ -46,20 +46,20 @@
           <tr>
             <th></th>
             <th>pk</th>
-            <th>distance</th>
-            <th>date</th>
-            <th>pilot</th>
-            <th>drone</th>
+            <th>uid</th>
+            <th>title</th>
+            <th>series</th>
+            <th>episode</th>
           </tr>
         </thead>
         <tfoot>
           <tr>
             <th></th>
             <th>pk</th>
-            <th>distance</th>
-            <th>date</th>
-            <th>pilot</th>
-            <th>drone</th>
+            <th>uid</th>
+            <th>title</th>
+            <th>series</th>
+            <th>episode</th>
           </tr>
         </tfoot>
 
@@ -67,6 +67,99 @@
     </div>
   </div>
 </table>
+{% endblock %}
+{% block extra_js %}
+
+<script>
+  function format ( d ) {
+    // `d` is the original data object for the row
+    return '<table id=nostripe cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
+        '<tr>'+
+            '<td>Full name:</td>'+
+            '<td>'+d.uid+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Extension number:</td>'+
+            '<td>'+d.id+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Extra info:</td>'+
+            '<td>And any further details here (images etc)...</td>'+
+        '</tr>'+
+    '</table>';
+}
+  var generated_csrf_token="{{ csrf_token }}"
+/* Formatting function for row details - modify as you need */
+function filterGlobal () {
+    $('#competition').DataTable().search(
+        $('#global_filter').val(),
+        $('#global_regex').prop('checked'),
+        $('#global_smart').prop('checked')
+    ).draw();
+}
+
+function filterColumn ( i ) {
+
+    $('#competition').DataTable().column( i ).search(
+        $('#col'+i+'_filter').val(),
+        $('#col'+i+'_regex').prop('checked'),
+        $('#col'+i+'_smart').prop('checked')
+    ).draw();
+}
+
+/* Change data here!*/
+$(document).ready(function() {
+    var table = $('#competition').DataTable({
+    "serverSide": false,
+    "ajax": {
+      "url":"http://localhost:8000/api/table",
+      "dataSrc":""},
+      "columns":[
+        {
+           "class":"details-control",
+           "orderable":false,
+           "data":null,
+           "defaultContent": ""
+         },
+          {"data": "pk"},
+          {"data": "uid"},
+          {"data": "item_title"},
+          {"data": "series_title"},
+          {"data": "episode_title"},
+      ],
+      // multi row select
+      "select":{
+        "style":'os'
+      }
+
+    });
+
+    $('input.global_filter').on( 'keyup click', function () {
+    filterGlobal();
+} );
+
+$('input.column_filter').on( 'keyup click', function () {
+    filterColumn( $(this).parents('tr').attr('data-column') );
+} );
 
 
+    // Add event listener for opening and closing details
+    $('#competition tbody').on('click', 'td.details-control', function () {
+        var tr = $(this).closest('tr');
+        var row = table.row( tr );
+
+        if ( row.child.isShown() ) {
+            // This row is already open - close it
+            row.child.hide();
+            tr.removeClass('shown');
+        }
+        else {
+            // Open this row
+            row.child( format(row.data()) ).show();
+            tr.addClass('shown');
+        }
+    } );
+} );
+
+</script>
 {% endblock %}
