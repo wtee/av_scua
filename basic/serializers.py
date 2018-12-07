@@ -18,7 +18,10 @@ class AVItemSerializer(serializers.ModelSerializer):
                   'date_created',
                   'credits',
                   'description',
-                  'location',)
+                  'location',
+                  'format_duration',
+                  'media_type',
+                  'copies')
 
 class ToyAVSerializer(serializers.ModelSerializer):
     class Meta:

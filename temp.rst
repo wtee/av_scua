@@ -102,3 +102,12 @@ serializers.py
                     'item_title',
                     'series_title',
                     'episode_title')
+
+
+##################
+Follow up needed
+##################
+
+1. Don't understand Film generation instructions
+2. Need to figure out how to do multiple selection for Base field
+3. Similar issue with sound format type 
