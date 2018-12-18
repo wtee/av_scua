@@ -20,14 +20,32 @@
             <td align="center"><input type="checkbox" class="global_filter" id="global_regex"></td>
             <td align="center"><input type="checkbox" class="global_filter" id="global_smart" checked="checked"></td>
           </tr>
-          <tr id="filter_col1" data-column="4">
+          <tr id="filter_col1" data-column="1">
             <td>Column - uid</td>
+            <td align="center"><input type="text" class="column_filter" id="col1_filter"></td>
+            <td align="center"><input type="checkbox" class="column_filter" id="col1_regex"></td>
+            <td align="center"><input type="checkbox" class="column_filter" id="col1_smart" checked="checked"></td>
+          </tr>
+          <tr id="filter_col2" data-column="2">
+            <td>Column - title</td>
+            <td align="center"><input type="text" class="column_filter" id="col2_filter"></td>
+            <td align="center"><input type="checkbox" class="column_filter" id="col2_regex"></td>
+            <td align="center"><input type="checkbox" class="column_filter" id="col2_smart" checked="checked"></td>
+          </tr>
+          <tr id="filter_col2" data-column="3">
+            <td>Column - series</td>
+            <td align="center"><input type="text" class="column_filter" id="col3_filter"></td>
+            <td align="center"><input type="checkbox" class="column_filter" id="col3_regex"></td>
+            <td align="center"><input type="checkbox" class="column_filter" id="col3_smart" checked="checked"></td>
+          </tr>
+          <tr id="filter_col2" data-column="4">
+            <td>Column - episode</td>
             <td align="center"><input type="text" class="column_filter" id="col4_filter"></td>
             <td align="center"><input type="checkbox" class="column_filter" id="col4_regex"></td>
             <td align="center"><input type="checkbox" class="column_filter" id="col4_smart" checked="checked"></td>
           </tr>
           <tr id="filter_col2" data-column="5">
-            <td>Column - title</td>
+            <td>Column - type</td>
             <td align="center"><input type="text" class="column_filter" id="col5_filter"></td>
             <td align="center"><input type="checkbox" class="column_filter" id="col5_regex"></td>
             <td align="center"><input type="checkbox" class="column_filter" id="col5_smart" checked="checked"></td>
@@ -45,21 +63,21 @@
         <thead>
           <tr>
             <th></th>
-            <th>pk</th>
             <th>uid</th>
             <th>title</th>
             <th>series</th>
             <th>episode</th>
+            <th>type</th>
           </tr>
         </thead>
         <tfoot>
           <tr>
             <th></th>
-            <th>pk</th>
             <th>uid</th>
             <th>title</th>
             <th>series</th>
             <th>episode</th>
+            <th>type</th>
           </tr>
         </tfoot>
 
@@ -73,20 +91,30 @@
 <script>
   function format ( d ) {
     // `d` is the original data object for the row
-    return '<table id=nostripe cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
+    return '<div class="container"><h4>'+d.item_title+' '+d.uid+'</h4>'+'<p>'+d.description+'</p>'+
+      '<a href="http://localhost:8000/admin/basic/avitem/'+d.pk+'/change/"><h5>edit</h5></a>'+
+    '<table class="table">'+
         '<tr>'+
-            '<td>Full name:</td>'+
+            '<td align="right" width="150">UID:</td>'+
             '<td>'+d.uid+'</td>'+
-        '</tr>'+
+            '</tr>'+
+                '<tr>'+
+            '<td align="right" width="150">Can Number:</td>'+
+            '<td>'+d.can_number+'</td>'+
+              '</tr>'+
+                '<tr>'+
+            '<td align="right" width="150">Original Can Number:</td>'+
+            '<td>'+d.original_can_number+'</td>'+
+              '</tr>'+
+                '<tr>'+
+            '<td align="right" width="150">Call Number:</td>'+
+            '<td>'+d.call_number+'</td>'+
+              '</tr>'+
         '<tr>'+
-            '<td>Extension number:</td>'+
+            '<td align="right" width="150">Extension number:</td>'+
             '<td>'+d.id+'</td>'+
         '</tr>'+
-        '<tr>'+
-            '<td>Extra info:</td>'+
-            '<td>And any further details here (images etc)...</td>'+
-        '</tr>'+
-    '</table>';
+    '</table></div>';
 }
   var generated_csrf_token="{{ csrf_token }}"
 /* Formatting function for row details - modify as you need */
@@ -107,6 +135,7 @@ function filterColumn ( i ) {
     ).draw();
 }
 
+
 /* Change data here!*/
 $(document).ready(function() {
     var table = $('#competition').DataTable({
@@ -121,11 +150,11 @@ $(document).ready(function() {
            "data":null,
            "defaultContent": ""
          },
-          {"data": "pk"},
           {"data": "uid"},
           {"data": "item_title"},
           {"data": "series_title"},
           {"data": "episode_title"},
+          {"data": "media_type"},
       ],
       // multi row select
       "select":{

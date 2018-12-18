@@ -29,7 +29,7 @@ class AVItem(models.Model):
         +-------------------------+--------------------------------------------------------------------------------+-------------------------+
         | date_created            | Orginal Creation Date, Text                                                    | Date Created            |
         +-------------------------+--------------------------------------------------------------------------------+-------------------------+
-        | credits_1                 | These are the Credits, Text                                                  | Credits                 |
+        | Credits                 | These are the Credits, Text                                                  | Credits                 |
         +-------------------------+--------------------------------------------------------------------------------+-------------------------+
         | description             | Description of Content, Text                                                   | Description             |
         +-------------------------+--------------------------------------------------------------------------------+-------------------------+
@@ -54,7 +54,7 @@ class AVItem(models.Model):
         | status                  | Following List: on shelf,                                                      | Status                  |
         |                         |   Conservation,Vendor, Loan                                                    |                         |
         +-------------------------+--------------------------------------------------------------------------------+-------------------------+
-        | copyright_1               | Following List: Open,                                                          | Copyright               |
+        | Copyright               | Following List: Open,                                                          | Copyright               |
         |                         |   Restricted                                                                   |                         |
         +-------------------------+--------------------------------------------------------------------------------+-------------------------+
         | gauge                   | enter                                                                          | Gauge                   |
@@ -168,7 +168,7 @@ class AVItem(models.Model):
         |                         |     -Mono                                                                      |                         |
         |                         |     -Stereo                                                                    |                         |
         +-------------------------+--------------------------------------------------------------------------------+-------------------------+
-        | clean                   | enter                                                                          | Clean                   |
+        | Clean                   | enter                                                                          | Clean                   |
         |                         |   "Yes" if film should be fully cleaned either by ultrasonic cleaner           |                         |
         |                         |   or velvet cloth, enter "No" if film should only be spot-cleaned              |                         |
         +-------------------------+--------------------------------------------------------------------------------+-------------------------+
@@ -252,8 +252,8 @@ class AVItem(models.Model):
 
     COPYRIGHT_CHOICES = (
         ('', ''),
-        ('open', 'OPEN'),
-        ('restricted', 'RESTRICTED'),
+        ('open', 'Open'),
+        ('restricted', 'Restricted'),
     )
 
     GAUGE_CHOICES = (
@@ -309,14 +309,14 @@ class AVItem(models.Model):
 
     SOUND_CHOICES = (
         ('', ''),
-        ('sound', 'SOUND'),
-        ('silent', 'SILENT'),
+        ('sound', 'Sound'),
+        ('silent', 'Silent'),
     )
 
     SOUND_CONTENT_CHOICES = (
         ('', ''),
-        ('composite track', 'COMPOSITE TRACK'),
-        ('sound content', 'SOUND CONTENT'),
+        ('composite track', 'Composite Track'),
+        ('sound content', 'Sound Content'),
     )
 
     SOUND_FIELD_CHOICES = (
@@ -386,35 +386,41 @@ class AVItem(models.Model):
 
     # citation
     date_created = models.CharField(max_length=100, unique=False, blank=True)
-    credits_1 = models.CharField(max_length=100, unique=False, blank=True)
+    Credits = models.CharField(max_length=100, unique=False, blank=True)
 
     # description
     description = models.CharField(max_length=100, unique=False, blank=True)
     location = models.CharField(max_length=100, unique=False, blank=True)
-    format_duration = models.TimeField(default="00:00:00")
+    format_duration = models.TimeField(default="00:00:00", blank=True, null=True)
 
     media_type = models.CharField(max_length=7,
                                   choices=MEDIA_CHOICES,
-                                  default='')
+                                  default='',
+                                  blank=True)
 
     copies = models.CharField(max_length=7,
                               choices=COPIES_CHOICES,
-                              default='')
+                              default='',
+                              blank=True)
 
     other_notes = models.CharField(max_length=200, unique=False, blank=True)
+    Base = models.CharField(max_length=100, unique=False, blank=True)
+    Sound_format_type = models.CharField(max_length=100, unique=False, blank=True)
 
     digital_preservation = models.CharField(max_length=7,
                                             choices=COPIES_CHOICES,
-                                            default='')
+                                            default='',
+                                            blank=True)
 
     lto_number = models.CharField(max_length=100, unique=False, blank=True)
     status = models.CharField(
-        max_length=15, choices=STATUS_CHOICES, default='')
+        max_length=15, choices=STATUS_CHOICES, default='', blank=True)
 
     # copyright is a reserved variable, replace to copyright_1
-    copyright_1 = models.CharField(
-        max_length=15, choices=COPYRIGHT_CHOICES, default='')
-    gauge = models.CharField(max_length=15, choices=GAUGE_CHOICES, default='')
+    Copyright = models.CharField(
+        max_length=15, choices=COPYRIGHT_CHOICES, default='', blank=True)
+    gauge = models.CharField(max_length=15, choices=GAUGE_CHOICES, default='',
+                             blank=True)
 
     # Film generation goes here
 
@@ -424,75 +430,87 @@ class AVItem(models.Model):
 
     frame_rate = models.CharField(max_length=15,
                                   choices=FRAMERATE_CHOICES,
-                                  default='')
+                                  default='',
+                                  blank=True)
 
     # adv_color was not in the original list
     color = models.CharField(max_length=15,
                              choices=COLOR_CHOICES,
-                             default='')
+                             default='',
+                             blank=True)
     adv_color = models.CharField(max_length=15,
                                  choices=ADV_COLOR_CHOICES,
-                                 default='')
-
-    copies = models.CharField(max_length=7,
-                              choices=COPIES_CHOICES,
-                              default='')
+                                 default='',
+                                 blank=True)
 
     aspect_ratio = models.CharField(max_length=15,
                                     choices=ASPECT_RATIO_CHOICES,
-                                    default='')
+                                    default='',
+                                    blank=True)
 
     anamorphic = models.CharField(max_length=7,
                                   choices=COPIES_CHOICES,
-                                  default='')
+                                  default='',
+                                  blank=True)
 
     sound = models.CharField(max_length=15,
                              choices=SOUND_CHOICES,
-                             default='')
+                             default='',
+                             blank=True)
 
     # sound format type goes here
 
     sound_content_type = models.CharField(max_length=25,
                                           choices=SOUND_CONTENT_CHOICES,
-                                          default='')
+                                          default='',
+                                          blank=True)
 
     sound_field = models.CharField(max_length=7,
                                    choices=SOUND_FIELD_CHOICES,
-                                   default='')
+                                   default='',
+                                   blank=True)
 
-    clean = models.CharField(max_length=7,
+    Clean = models.CharField(max_length=7,
                              choices=COPIES_CHOICES,
-                             default='')
-
+                             default='',
+                             blank=True)
+#################################################################################
     resolution = models.CharField(max_length=7,
                                   choices=RESOLUTION_CHOICES,
-                                  default='')
+                                  default='',
+                                  blank=True)
 
     sample_encoding = models.CharField(max_length=25,
                                        choices=SAMPLE_ENCODING_CHOICES,
-                                       default='')
+                                       default='',
+                                       blank=True)
 
     return_on_original_reel = models.CharField(max_length=7,
                                                choices=COPIES_CHOICES,
-                                               default='')
+                                               default='',
+                                               blank=True)
 
     mold = models.CharField(max_length=7,
                             choices=MOLD_CHOICES,
-                            default='')
+                            default='',
+                            blank=True)
 
-    shrinkage = models.FloatField(default='0.0')
+    shrinkage = models.FloatField(default=0.0)
 
     ad_strip = models.CharField(max_length=7,
                                 choices=AD_STRIP_CHOICES,
-                                default='')
+                                default='',
+                                blank=True)
 
     track_count = models.CharField(max_length=7,
                                    choices=TRACK_COUNT_CHOICES,
-                                   default='')
+                                   default='',
+                                   blank=True)
 
     stock = models.CharField(max_length=25,
                              choices=STOCK_CHOICES,
-                             default='')
+                             default='',
+                             blank=True)
 
     def __str__(self):
         return self.item_title

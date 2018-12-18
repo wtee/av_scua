@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'rest_framework_datatables',
     'corsheaders',
     # local
-    'basic.apps.BasicConfig',
+    'basic.apps.BasicConfig'
 ]
 
 MIDDLEWARE = [
