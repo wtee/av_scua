@@ -1,5 +1,0 @@
-Collecting elasticsearch
-  Downloading https://files.pythonhosted.org/packages/b1/f1/89735ebb863767516d55cee2cfdd5e2883ff1db903be3ba1fe15a1725adc/elasticsearch-6.3.1-py2.py3-none-any.whl (119kB)
-Requirement already satisfied: urllib3>=1.21.1 in c:\users\rwolfsla\appdata\local\continuum\anaconda3\envs\mydjango\lib\site-packages (from elasticsearch) (1.23)
-Installing collected packages: elasticsearch
-Successfully installed elasticsearch-6.3.1
