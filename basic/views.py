@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.reverse import reverse
+from rest_framework.permissions import IsAuthenticated
 from basic.models import AVItem
 from basic.serializers import AVItemSerializer, ToyAVSerializer
 
@@ -11,7 +12,8 @@ def home_page(request):
     '''
     return render(request, 'basic/dtable.html')
 
-class AVItemList(generics.ListCreateAPIView):
+# change to ListCreateAPIView with permissions
+class AVItemList(generics.ListAPIView):
     '''
         view for API
     '''
@@ -31,7 +33,8 @@ class AVItemList(generics.ListCreateAPIView):
         'item_title'
     )
 
-class AVItemDetail(generics.RetrieveUpdateDestroyAPIView):
+# change to RetrieveUpdateDestroyAPIView with permissions
+class AVItemDetail(generics.RetrieveAPIView):
     queryset = AVItem.objects.all()
     serializer_class = AVItemSerializer
     name = 'avitem-detail'
