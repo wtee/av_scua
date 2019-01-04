@@ -1,8 +1,9 @@
----
-title: 'AV\_SCUA'
----
 
-AV\_SCUA is a django based API and interface built to integrate with a
+AV_SCUA
+========
+
+
+AV_SCUA is a django based API and interface built to integrate with a
 database containing Iowa State University audio visual materials. An
 example of this code, can be found at
 <https://rwolfsla.pythonanywhere.com/>.
