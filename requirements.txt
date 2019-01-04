@@ -31,7 +31,7 @@ pyparsing==2.3.0
 python-dateutil==2.7.3
 pytz==2018.5
 pyzmq==17.1.2
-requests==2.19.1
+requests==2.20.0
 six==1.11.0
 snowballstemmer==1.2.1
 text-unidecode==1.2
