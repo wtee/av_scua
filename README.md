@@ -14,7 +14,7 @@ $ conda create -n "av_scua_env" python=3.7
 $ pip install requirements.txt
 ```
 
-With the environment set up, run the django development
+With the environment created, run the django development
 server in the typical fashion.
 
 ``` {.sourceCode .console}
@@ -24,7 +24,7 @@ $ python manage.py runserver
 Changing Filters
 -----------------
 
-To change the filterable fields, navicate to 'templates/basic/dtable.html' and modify the javascript generated table data:
+To change the filterable fields, navigate to 'templates/basic/dtable.html' and modify the javascript generated table data:
 
 
 > ``` {.sourceCode .javascript}
