@@ -31,3 +31,9 @@ To change the filterable fields, navigate to 'templates/basic/dtable.html' and m
 > '<td align="right" width="150">UID:</td>'+
 > '<td>'+d.uid+'</td>'+
 > ```
+
+
+Documentation
+--------------
+
+https://mddocs.readthedocs.io/en/latest/scua.html#av-database
