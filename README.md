@@ -24,7 +24,7 @@ $ python manage.py runserver
 Changing Filters
 -----------------
 
-To change the filterable fields, navigate to ['dtable.html']('templates/basic/dtable.html') and modify the javascript generated table data:
+To change the filterable fields, navigate to [dtable.html](templates/basic/dtable.html) and modify the javascript generated table data:
 
 
 > ``` {.sourceCode .javascript}
