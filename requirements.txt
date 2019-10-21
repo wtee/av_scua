@@ -1,4 +1,4 @@
-Django==2.1.2
+Django==2.1.11
 django-cors-headers==2.4.0
 django-crispy-forms==1.7.2
 django-datatable==0.3.1
